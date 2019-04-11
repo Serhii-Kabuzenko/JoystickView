@@ -35,6 +35,7 @@ extension JoystickViewDelegate {
 }
 
 @objc open class JoystickView: UIView {
+    @IBOutlet weak var delegate: JoystickViewDelegate?
     @IBOutlet public weak var joystickBg: UIView!
     @IBOutlet public weak var joystickThumb: UIView!
     
@@ -43,7 +44,6 @@ extension JoystickViewDelegate {
     private var radius: CGFloat = 0.0
     private var margin: CGFloat = 0.0
     
-    public weak var delegate: JoystickViewDelegate?
     public var form: JoystickForm = .around
     public var enable: Bool = true{
         didSet{
