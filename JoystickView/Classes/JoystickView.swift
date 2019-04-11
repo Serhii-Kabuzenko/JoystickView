@@ -8,24 +8,24 @@
 
 import UIKit
 
-public protocol JoystickViewDelegate: class {
+@objc public protocol JoystickViewDelegate: NSObjectProtocol {
     //x,y [0.0 - 1.0]
-    func joystickView(_ joystickView: JoystickView, didMoveto x: Float, y: Float, direction: JoystickMoveDriection)
+    func joystickView(_ joystickView: JoystickView, didMoveto x: CGFloat, y: CGFloat, direction: JoystickMoveDriection)
     func joystickViewDidEndMoving(_ joystickView: JoystickView)
 }
 
 extension JoystickViewDelegate {
-    func joystickView(_ joystickView: JoystickView, didMoveto x: Float, y: Float, direction: JoystickMoveDriection) {}
+    func joystickView(_ joystickView: JoystickView, didMoveto x: CGFloat, y: CGFloat, direction: JoystickMoveDriection) {}
     func joystickViewDidEndMoving(_ joystickView: JoystickView) {}
 }
 
-public enum JoystickForm: NSInteger {
+@objc public enum JoystickForm: NSInteger {
     case vertical
     case horizontal
     case around
 }
 
-public enum JoystickMoveDriection: NSInteger {
+@objc public enum JoystickMoveDriection: NSInteger {
     case none
     case up
     case down
@@ -34,7 +34,7 @@ public enum JoystickMoveDriection: NSInteger {
     case diagonal
 }
 
-open class JoystickView: UIView {
+@objc open class JoystickView: UIView {
     @IBOutlet public weak var joystickBg: UIView!
     @IBOutlet public weak var joystickThumb: UIView!
     
@@ -183,6 +183,6 @@ open class JoystickView: UIView {
             direction = yValue < 0 ? .down : .up
         }
         
-        delegate?.joystickView(self, didMoveto: Float(xValue), y: Float(yValue), direction: direction)
+        delegate?.joystickView(self, didMoveto: xValue, y: yValue, direction: direction)
     }
 }
